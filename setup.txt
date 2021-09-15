@@ -1,0 +1,112 @@
+1. File -> New Project (указывайтdjся название, версия пайтона)
+2. Создается файл requirements.txt
+3. Настройка виртуального окруения (File -> Settings -> Project -> Python Interpreter -> Add
+4. Устанавка зависимостей при помощи pip install -r путь_до_файла
+5. Развертывание джанго проекта-> django-admin startproject название_проекта .
+6. Создание базы данных
+7. Создание приложения -> python3 manage.py startapp название
+8. Настройка проекта - настройки бд, регистрация приложения в INSTALLED_APPS
+9. Проверка настроек -> python3 manage.py runserver (пройти по ссылке)
+
+python3 manage.py makemigrations - связывает бд с джанго
+python3 manage.py migrate - применяет все изменения в бд
+python3 manage.py dbshell - подключение к нужной базе данных
+
+pip install python-decouple
+pip freeze > requirements.txt
+
+ОСНОВНЫЕ ОПЕРАЦИИ:
+
+# INSERT
+# Publication.objects.create(title='...', text='...') - добавление по одной записи
+# INSERT INTO Publication (title, text) VALUES(....)
+# pub = Publication(title = ..., text= ...) - добавление по одному
+# pub.save()
+# Publication.objects.bulk_create([
+#     Publication(.....),
+#     Publication(.....),
+#     Publication(.....)
+# ]) - добавление нескольких записей
+
+
+# SELECT
+# SELECT * FROM Publication;
+# Publication.objects.all()
+
+# SELECT title FROM Publication;
+# 1. Publication.objects.only('title', ...) - вытаскивает по нужным полям
+# 2. Publication.objects.defer('user', ...) -исключает ненужные перечисленные поля
+
+# фильтрация
+# SELECT * FROM publication WHERE..
+# Publication.objects.filter(...условие)
+#
+# # Операции
+# SELECT * FROM publication WHERE id=1;
+# Publication.objects.filter(id=1)
+#
+# SELECT * FROM publication WHERE created_at > ...
+# Publication.objects.filter(created_at__gt=current)
+
+# '>' -> gt
+# '<' -> lt
+# '>=' -> gte
+# '<=' -> lte
+# '=' -> =
+# '=' -> exact/iexact
+# 'IN' -> in
+# 'BETWEEN' -> range
+
+# LIKE, ILIKE 'Samsung%' -> startwith/istartwith
+# '%11' -> endswith/iendswith
+# '%something%' -> containts/icontaints
+
+# Limit
+# SELECT * FROM publication LIMIT 10;
+# Publication.objects.all()[:10]
+#
+# SELECT * FROM publication LIMIT 10 OFFSET 10;
+# Publication.objects.all()[10:20]
+#
+# SELECT * FROM publication WHERE id=1;
+# Publication.objects.filter(id=1)
+#
+# # Получение одной записи
+# SELECT * FROM publication WHERE id=1 LIMIT 1;
+# Publication.oblects.get(id=1)
+# Publication.objects.filter(id=1).first()
+
+
+# UPDATE
+# 1.Обновление всех записей
+# UPDATE publication SET status='closed';
+# Publication.objects.update(status='closed')
+#
+# 2. Обновление какой-либо части записи
+# UPDATE publication SET status='closed' WHERE status='draft'
+# Publication.objects.filter(status='draft').update(status='closed')
+
+# 3. Обновление одной записи:
+# UPDATE publication SET status='closed' WHERE id=1;
+# 1. Publication.objects.filter(id=1).update(status='closed')
+#
+# 2. pub = Publication.objects.get(id=1)
+# pub.status = 'closed'
+# pub.save()
+
+
+# DELETE
+# 1. Удаление всех записей
+# DELETE FROM publication;
+# Publication.objects.delete()
+#
+# 2. Удаление части записи
+# DELETE FROM publication WHERE status='closed';
+# Publication.objects.filter(status='closed').delete()
+#
+# 3. Удаление одной записи:
+# DELETE FROM publication WHERE id=1;
+# 1. Publication.objects.filetr(id=1).delete)
+#
+# 2. pub = Publication.objects.get(id=1)
+# pub.delete()
