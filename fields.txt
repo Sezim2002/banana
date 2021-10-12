@@ -1,0 +1,34 @@
+AutoField                   | SERIAL
+BigAutoField                | BIGSERIAL
+SmallAutoField              | SMALLSERIAL
+
+IntegerField                | INTEGER
+BigIntegerField             | BIGINT
+SmallIntegerField           | SMALLINT
+PositiveIntegerField        | INTEGER(минимальное значение - 0, принимает только положительные значения)
+PositiveBigIntegerField     | BIGINT
+PositiveSmallIntegerField   | SMALLINT
+FloatField                  | REAL
+DecimalField                | NUMERIC/DECIMAL
+
+CharField                   | VARCHAR
+TextField                   | TEXT
+
+DateField                   | DATE
+DateTimeField               | TIMESTAMP
+TimeField                   | TIME
+BooleanField                | BOOLEAN
+
+EmailField                  | VARCHAR (со своими проверками)
+SlugField                   | VARCHAR (со своими провепками)
+URLField                    | VARCHAR
+FileField(привязка к файлу) | VARCHAR
+ImageField(привязка к изображению)
+JsonField                   | json
+ForeignKey(тип поля в БД будет соответсвовать с типом РК в связанной таблице,
+автоматически создается поле с постфиксом _id)
+OneToOneField
+ManyToManyField(сам создает третью таблицу для связи)
+
+
+

@@ -48,7 +48,7 @@ pip freeze > requirements.txt
 # SELECT * FROM publication WHERE created_at > ...
 # Publication.objects.filter(created_at__gt=current)
 
-# '>' -> gt
+# '>' ->
 # '<' -> lt
 # '>=' -> gte
 # '<=' -> lte
